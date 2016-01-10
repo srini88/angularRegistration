@@ -1,11 +1,12 @@
 <section class="card login">
   <form name="myform"
+    ng-submit = "login()"
     novalidate>
 
     <div class="textintro">
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
-      <h3>{{myform.email.$valid}} </h3>
+      <p class = "message"ng-show="message">{{message}}</p>
     </div>
 
     <fieldset>
@@ -20,8 +21,9 @@
        ng-show="myform.password.$invalid && myform.email.$touched" 
       > Must be a valid password ! </p>
     </fieldset>
-
-    <button type="submit" class="btn">Login</button>
+    <!-- process this form only when the validation holds good above, so using ng-disabled -->
+    <button type="submit" class="btn"
+    ng-disabled="myform.$invalid" >Login</button>
     <p>or <a href="#/register">register</a></p>
   </form>
 </section>
