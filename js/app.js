@@ -1,4 +1,8 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+
+//setting up firebase dependency , just created a constant to manage the URL 
+
+var myApp = angular.module('myApp', ['ngRoute', 'firebase'])
+			.constant('FIREBASE_URL', 'https://angularregi.firebaseio.com/');
 
 // remember using config method since using routes
 
