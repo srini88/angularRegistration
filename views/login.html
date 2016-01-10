@@ -5,11 +5,14 @@
     <div class="textintro">
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
-      <p>{{message}}</p>
+      <p>{{user}}</p>
+      <h1>{{user.email}} </h1>
+      <h3>{{myform.email.$valid}} </h3>
     </div>
 
     <fieldset>
-      <input type="email" name="email" placeholder="Email">
+      <input type="email" name="email" placeholder="Email"
+      ng-model = "user.email" ng-required = "true">
       <input type="password" name="password" placeholder="Password">
     </fieldset>
 
