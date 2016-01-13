@@ -10,7 +10,7 @@
 
 // no longer need $firebaseAuth,a as it will be handled in Authentation
 myApp.controller('RegistrationController',['$scope','Authentication',function($scope, Authentication){
-
+	// linking scope ka login and authentication ka login
 	$scope.login = function(){
 		// when some one clicks login we get here ..from the login.html that executes login() method 
 		// now call the authentication service
