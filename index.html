@@ -30,8 +30,12 @@
 </header>
 <div class="page">
     <!-- show only if currentuser info exists , ng-show -->
-   <div class="userinfo" ng-show="currentUser">
+   <div class="userinfo" ng-show="currentUser" ng-controller = "RegistrationController">
      <span class="userinfo">Hi {{currentUser.firstname}}</span>
+
+     <a ng-href="#/login" ng-click="logout()">logout </a>
+
+
    </div>
   <main class="cf" ng-view>
   </main>

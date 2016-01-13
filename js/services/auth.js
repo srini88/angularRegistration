@@ -37,7 +37,10 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location','$fir
 						
 		}, //login
 
-
+		logout: function(){
+			// also run the method called unauth
+			return auth.$unauth();
+		}, // logout method
 
 		register: function(user){
 			

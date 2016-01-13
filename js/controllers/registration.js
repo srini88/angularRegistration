@@ -17,6 +17,16 @@ myApp.controller('RegistrationController',['$scope','Authentication',function($s
 		// auth.js has both login and register in that 
 		Authentication.login($scope.user);
 	}; //login
+
+	$scope.logout = function(){
+		// remember you put $ infront of the same logout method in the auth file
+		// not passing anything to the logout method
+		Authentication.logout();
+	}; //logout
+
+
+
+
 	//register is the function frmo the register.html page
 	// we passing in email and password form the register.html form
 	// now after passing how we know we registered (use a promise)
