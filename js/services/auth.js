@@ -42,6 +42,11 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location','$fir
 			return auth.$unauth();
 		}, // logout method
 
+		requireAuth : function(){
+			// firebase has requireAuth method
+			return auth.$requireAuth();
+		}, // requireAuthentication
+
 		register: function(user){
 			
 			auth.$createUser({
