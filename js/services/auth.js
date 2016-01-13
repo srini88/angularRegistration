@@ -1,9 +1,24 @@
 // start working on the factory  to take care of authentication service
 
-myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location', 'FIREBASE_URL', function($rootScope, $firebaseAuth, $location, FIREBASE_URL){
+myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location','$firebaseObject', 'FIREBASE_URL', function($rootScope, $firebaseAuth, $location, $firebaseObject, FIREBASE_URL){
 
 	var ref = new Firebase(FIREBASE_URL);
 	var auth = $firebaseAuth(ref);
+
+
+	//detecting if user is logged in
+	auth.$onAuth(function(authUser){
+		if (authUser){
+			var userRef = new Firebase(FIREBASE_URL + 'users/' + authUser.uid);
+			// add firebase Obj to list of dependencies
+			var userObj = $firebaseObject(userRef);
+			// this obj will have all the info we need
+			$rootScope.currentUser = userObj;
+		} else {
+			$rootScope.currentUser = '';
+		}
+	});
+
 
 	// when this factory is called, it is gonna return an object 
 	// this object contains different functions , contains login as a method, and register as a method ...controller is gonna be calling this factory 
