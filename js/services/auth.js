@@ -1,6 +1,6 @@
 // start working on the factory  to take care of authentication service
 
-myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', 'FIREBASE_URL', function($rootScope, $firebaseAuth, FIREBASE_URL){
+myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location', 'FIREBASE_URL', function($rootScope, $firebaseAuth, $location, FIREBASE_URL){
 
 	var ref = new Firebase(FIREBASE_URL);
 	var auth = $firebaseAuth(ref);
@@ -9,7 +9,17 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth', 'FIREBASE_URL', 
 	// this object contains different functions , contains login as a method, and register as a method ...controller is gonna be calling this factory 
 	return {
 		login: function(user){
-			$rootScope.message = "Welcome "+ user.email;			
+			auth.$authWithPassword({
+				email: user.email, 
+				password: user.password
+			}).then(function(regUser){
+				// redirect the user to welocme page
+				// location service is provided by angular
+				$location.path('/success');
+			}).catch(function(error){
+				$rootScope.message = error.message;	
+			});
+						
 		}, //login
 
 
