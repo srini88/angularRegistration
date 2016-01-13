@@ -22,7 +22,9 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location','$fir
 
 	// when this factory is called, it is gonna return an object 
 	// this object contains different functions , contains login as a method, and register as a method ...controller is gonna be calling this factory 
-	return {
+	
+
+	var myObject =  {
 		login: function(user){
 			auth.$authWithPassword({
 				email: user.email, 
@@ -66,12 +68,14 @@ myApp.factory('Authentication', ['$rootScope', '$firebaseAuth','$location','$fir
 				lastname: user.lastname,
 				email: user.email
 			}); // add user id as the child of this path , putting user info into firebase 
+			// problem we have, after registering ,  we not logged in, we must login explictily, 
+			// to prevent that , i'm letting the user login immediately
+			myObject.login(user);
 
-
-			$rootScope.message = "Hi "+ user.firstname + ", Thanks for registering";
 			}).catch(function(error){   // if it fails (user tries to register email more than once ) , we gonna get error from firebase, that error has a parameter of message (default)
 			$rootScope.message = error.message;
 			}); // create user 
 		}	// register function
 	};
+	return myObject;
 }]); //factory
